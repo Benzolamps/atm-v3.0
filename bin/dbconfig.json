@@ -1,0 +1,233 @@
+{
+    "driver": "com.mysql.jdbc.Driver",
+
+    "url": "jdbc:mysql://47.98.12.174:3306/atmdb?useSSL=false",
+
+    "username": "root",
+
+    "password": "123456",
+
+    "tables": [
+        {
+            "name": "view_user",
+            "class": "com.feicuiedu.atm.entity.AtmUser",
+            "columns": [
+                {
+                    "name": "user_card_id",
+                    "field": "cardId"
+                },
+
+                {
+                    "name": "user_balance",
+                    "field": "balance"
+                },
+
+                {
+                    "name": "user_password",
+                    "field": "password"
+                },
+
+                {
+                    "name": "user_name",
+                    "field": "name"
+                },
+
+                {
+                    "name": "user_id_no",
+                    "field": "idNo"
+                },
+
+                {
+                    "name": "user_gender",
+                    "field": "gender"
+                },
+
+                {
+                    "name": "user_address",
+                    "field": "address"
+                },
+
+                {
+                    "name": "user_birth",
+                    "field": "birth"
+                },
+
+                {
+                    "name": "user_status",
+                    "field": "status"
+                }
+            ]
+        },
+
+        {
+            "name": "view_record",
+            "class": "com.feicuiedu.atm.entity.AtmRecord",
+            "columns": [
+                {
+                    "name": "record_serial_no",
+                    "field": "serialNo"
+                },
+
+                {
+                    "name": "record_time",
+                    "field": "time"
+                },
+
+                {
+                    "name": "record_type",
+                    "field": "type"
+                },
+
+                {
+                    "name": "record_target",
+                    "field": "target"
+                },
+
+                {
+                    "name": "record_target_name",
+                    "field": "targetName"
+                },
+
+                {
+                    "name": "record_amount",
+                    "field": "amount"
+                },
+
+                {
+                    "name": "record_balance",
+                    "field": "balance"
+                },
+
+                {
+                    "name": "record_result",
+                    "field": "result"
+                }
+            ]
+        }
+    ],
+
+    "sentences": [
+        {
+            "sentence": "SELECT add_user(?, ?, ?, ?, ?, ?)",
+            "method": "com.feicuiedu.atm.dao.AtmUserDaoImpl.addUser",
+            "params": [
+                "java.lang.String",
+                "java.lang.String",
+                "java.lang.Byte",
+                "java.util.Date",
+                "java.lang.String",
+                "java.lang.String"
+            ]
+        },
+
+        {
+            "sentence": "SELECT delete_user(?)",
+            "method": "com.feicuiedu.atm.dao.AtmUserDaoImpl.deleteUser",
+            "params": [
+                "java.lang.String"
+            ]
+        },
+
+        {
+            "sentence": "SELECT lock_user(?)",
+            "method": "com.feicuiedu.atm.dao.AtmUserDaoImpl.lockUser",
+            "params": [
+                "java.lang.String"
+            ]
+        },
+
+        {
+            "sentence": "SELECT unlock_user(?)",
+            "method": "com.feicuiedu.atm.dao.AtmUserDaoImpl.unlockUser",
+            "params": [
+                "java.lang.String"
+            ]
+        },
+
+        {
+            "sentence": "SELECT reset_password(?, ?)",
+            "method": "com.feicuiedu.atm.dao.AtmUserDaoImpl.resetPassword",
+            "params": [
+                "java.lang.String",
+                "java.lang.String"
+            ]
+        },
+
+
+        {
+            "sentence": "SELECT transfer(?, ?, ?)",
+            "method": "com.feicuiedu.atm.dao.AtmUserDaoImpl.transfer",
+            "params": [
+                "java.lang.String",
+                "java.lang.String",
+                "java.lang.Double"
+            ]
+        },
+
+        {
+            "sentence": "SELECT deposit(?, ?)",
+            "method": "com.feicuiedu.atm.dao.AtmUserDaoImpl.deposit",
+            "params": [
+                "java.lang.String",
+                "java.lang.Double"
+            ]
+        },
+
+        {
+            "sentence": "SELECT debit(?, ?)",
+            "method": "com.feicuiedu.atm.dao.AtmUserDaoImpl.debit",
+            "params": [
+                "java.lang.String",
+                "java.lang.Double"
+            ]
+        },
+
+        {
+            "sentence": "SELECT * FROM view_user u WHERE u.user_card_id = ?",
+            "method": "com.feicuiedu.atm.dao.AtmUserDaoImpl.getUserByCardId",
+            "params": [
+                "java.lang.String"
+            ]
+        },
+
+        {
+            "sentence": "SELECT * FROM view_user u WHERE u.user_id_no = ?",
+            "method": "com.feicuiedu.atm.dao.AtmUserDaoImpl.getUserByIdNo",
+            "params": [
+                "java.lang.String"
+            ]
+        },
+
+        {
+            "sentence": "SELECT * FROM view_admin",
+            "method": "com.feicuiedu.atm.dao.AtmUserDaoImpl.getAdmins",
+            "params": []
+        },
+
+        {
+            "sentence": "SELECT * FROM view_user WHERE user_status='正常'",
+            "method": "com.feicuiedu.atm.dao.AtmUserDaoImpl.getNormalUsers",
+            "params": []
+        },
+
+        {
+            "sentence": "SELECT * FROM view_user WHERE user_status='已锁定'",
+            "method": "com.feicuiedu.atm.dao.AtmUserDaoImpl.getLockedUsers",
+            "params": []
+        },
+
+        {
+            "sentence": "SELECT * FROM view_user WHERE user_status='已销户'",
+            "method": "com.feicuiedu.atm.dao.AtmUserDaoImpl.getDeletedUsers",
+            "params": []
+        },
+
+        {
+            "sentence": "SELECT * FROM view_record WHERE user_card_id = ?",
+            "method": "com.feicuiedu.atm.dao.AtmUserDaoImpl.getUserRecord",
+            "params": [
+                "java.lang.String"
+            ]
+        }
+    ]
+}
